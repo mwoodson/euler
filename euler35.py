@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import pdb
-
+import pdb 
 """
 197 circular because 197, 971, 719
 
@@ -9,25 +8,47 @@ import pdb
 how many circ primes are below one million?
 """
 import math
-import copy
 
 def isPrime(x):
-    #if x == 1 or x == 2:
-        #return True
     for i in xrange(2,int(math.sqrt(x))+1):
         if x % i == 0:
             return False
     else:
         return True
 
+notin = set(["2","4","5","6","8"])
 def isCirc(x):
-    xstr = list(str(x))
-    for i in range(len(xstr)):
+    #global notin
+    #xstr = list(str(x))
+    #sxstr = set(xstr)
+    #if len(sxstr.intersection(notin)) > 1:
+        #return False
+    for i in xstr:
         xstr.append(xstr.pop(0))
         if not isPrime(int("".join(xstr))):
             return False
     return True
-print len(filter(isCirc, filter(isPrime, xrange(3,1000000,2)))) + 2
+
+aset = set()
+notin = set(["2","4","5","6","8"])
+for x in xrange(7,1000001,2):
+    #pdb.set_trace()
+    xstr = list(str(x))
+    sxstr = set(xstr)
+    if len(sxstr.intersection(notin)) > 0:
+        continue
+    elif isCirc(x):
+        aset.add(x)
+        
+
+#ab = filter(isCirc, xrange(3,1000001,2))
+aset.add(2)
+aset.add(5)
+ab = list(aset)
+#ab.insert(1, 2)
+ab.sort()
+print ab
+print len(ab)
     
 
 
