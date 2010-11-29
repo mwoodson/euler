@@ -19,7 +19,7 @@ def isPrime(x):
 notin = set(["2","4","5","6","8"])
 def isCirc(x):
     #global notin
-    #xstr = list(str(x))
+    xstr = list(str(x))
     #sxstr = set(xstr)
     #if len(sxstr.intersection(notin)) > 1:
         #return False
@@ -31,7 +31,7 @@ def isCirc(x):
 
 aset = set()
 notin = set(["2","4","5","6","8"])
-for x in xrange(7,1000001,2):
+for x in xrange(11,1000001,2):
     #pdb.set_trace()
     xstr = list(str(x))
     sxstr = set(xstr)
@@ -40,15 +40,17 @@ for x in xrange(7,1000001,2):
     elif isCirc(x):
         aset.add(x)
         
-
-#ab = filter(isCirc, xrange(3,1000001,2))
-aset.add(2)
-aset.add(5)
+aset.add(2) #Add in 2 
+aset.add(3) #and 3 
+aset.add(5) # and 5 because we skip those
+aset.add(7) # and 7 because we skip those
 ab = list(aset)
 #ab.insert(1, 2)
 ab.sort()
 print ab
 print len(ab)
+
+#ab = filter(isCirc, xrange(3,1000001,2)) Takes longer
     
 
 
