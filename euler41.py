@@ -74,7 +74,6 @@ def main3():
     dlist = ["9","8","7","6","5","4","3","2","1"]
     for y in range(len(dlist)):
         dstr = "".join(dlist[y:])
-
         for i in itertools.permutations(dstr,len(dstr)):
             a=int("".join(i))
             if is_prime(a): 

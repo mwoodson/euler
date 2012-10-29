@@ -35,7 +35,7 @@ def main():
             t2 = pnp2 == do_pent(do_reverse(pnp2))
             if not t2: continue
             if n == p: continue
-            print pnp1
+            print n,p,pnp1
                 #print pnp1,pnp2
                 #print p,n,d[p],d[n]
             found = True

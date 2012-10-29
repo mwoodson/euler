@@ -60,7 +60,8 @@ def fact(x):
 
 #print fact(40)/(fact(20) * fact(40-20))
 #MAX_MOVES = 3 #2x2 grid, moves = 4 but zero based is 3
-MAX_MOVES = 5 #2x2 grid, moves = 4 but zero based is 3
+#MAX_MOVES = 5 #2x2 grid, moves = 4 but zero based is 3
+MAX_MOVES = 20 #2x2 grid, moves = 4 but zero based is 3
 
 #for i in xrange(0,MAX_MOVES):
     #alist.append([True for x in xrange(0,MAX_MOVES)])

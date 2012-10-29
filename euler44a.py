@@ -19,11 +19,6 @@ def gen_pent(x):
     for n in xrange(1,x+1):
         yield n*(3*n-1) / 2
 
-def do_pent(x):
-    return x*(3*x-1) / 2
-
-def do_reverse(x):
-    return round(.16666+.1666666 * math.sqrt(24*x + 1))
 
 def main():
     found = False
@@ -31,7 +26,7 @@ def main():
     for x in all_pent:
         for y in all_pent:
             if x+y in all_pent and x-y in all_pent:
-                print do_reverse(x),do_reverse(y)
+                print x-y
                 found = True
                 break
         if found: break
