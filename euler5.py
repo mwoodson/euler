@@ -7,7 +7,6 @@ What is the smallest number that is evenly divisible by all of the numbers from 
 '''
 nums = [19,13,18,17,16,15,14,13,12,11]
 
-found = False
 for i in xrange(2520, 1000000000, 2520):
     if any(z for z in nums if i % z != 0):
         continue
