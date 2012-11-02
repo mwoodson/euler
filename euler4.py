@@ -7,11 +7,11 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 '''
 
 highest = 0
-for i in xrange(1000, 100, -1):
-    for y in xrange(1000, 100, -1):
+for i in xrange(999, 900, -2):
+    for y in xrange(999, 900, -2):
         ptest = str(i * y)
         if ptest[:] == ptest[::-1]:
-            if ptest > highest:
-                highest = ptest
-                print ptest
+            if int(ptest) > highest:
+                highest = int(ptest)
             break
+print highest
