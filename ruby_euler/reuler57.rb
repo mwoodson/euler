@@ -5,13 +5,27 @@ require 'pp'
 
 def main
 
-    start = "(2+1)"
-    close = "(2+1/2)"
-
-    while true
-        1 + 1/
+    count = 0
+    a = 3
+    b = 2
+    old_a = 1
+    old_b = 1
+    tmp_a = 1
+    tmp_b = 1
+    1.upto(1000).each do |num|
+#puts "#{a}/#{b} => #{a/b.to_f}"
+        old_a = a
+        old_b = b
+        a = a * 2 + tmp_a
+        b = b * 2 + tmp_b
+        tmp_a = old_a
+        tmp_b = old_b
+        count += 1 if a.to_s.length > b.to_s.length 
     end
+
+    puts count
 end
+
 
 
 
@@ -40,3 +54,11 @@ It is possible to show that the square root of two can be expressed as an infini
 
 
 
+#>> eval("1+1/(2+1/" * 3 + "2" + ").to_f" * 3)
+3/2 => *2+1
+
+7/5 => *2+3 / *2 + 2
+
+17/12 * 2 + 7 / * 2 + 5
+
+41/29
