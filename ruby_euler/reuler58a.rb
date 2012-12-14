@@ -3,25 +3,44 @@
 require 'pp'
 require 'mathn'
 
-def main
+def better_sieve_upto(n)
+  s = (0..n).to_a
+  s[0] = s[1] = nil
+  s.each do |p|
+    next unless p
+    break if p * p > n
+    (p*p).step(n, p) { |m| s[m] = nil }
+  end
+  s.compact
+end
 
+
+def prime(n)
+    return false if n % 2 == 0
+    (3..((n**0.5).to_i + 1)).step(2).each do |s|
+        return false if n % s == 0
+    end
+    return true
+end
+
+def main
     
-    primes = Prime.instance
+    #primes = Prime.instance
     moves = 2
     diag = 1
     c = 1
     pc = 0
     z = 100
-    while z > 10 && c > 0
-        #see if our percentage is met
+    corners = []
+    #see if our percentage is met
+    while z > 0.10 && c > 0
         0.upto(3).each do |ind| 
             c += moves
-            pc += 1 if primes.prime?(c)
+            pc += 1 if prime(c)
             diag += 1
         end
         moves += 2
-
-        z = (pc / diag).to_f * 100
+        z = (pc / diag).to_f
     end
     puts "Iteration: #{c **0.5}: c=#{c} z=#{z}"
 end
