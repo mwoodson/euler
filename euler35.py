@@ -19,8 +19,6 @@ def primeSieve(n):
         candidates[2*i::i] = [None] * (n//i - 1)
 
     #can filter out all 200k's, 400's, 600's, 800's
-    for i in range(2,9,2):
-        candidates[i*100000:(i+1)*100000] = [None] * 100000
     return [i for i in candidates[2:] if i], candidates
     #return [i for i in candidates[2:] if i]
 
