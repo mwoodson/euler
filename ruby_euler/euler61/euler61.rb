@@ -13,7 +13,7 @@ def main
         break if num > 9999
     end
 =end
-a = [1281, 8128, 2882, 8256, 5625, 2512]
+#a = [1281, 8128, 2882, 8256, 5625, 2512]
     numbers = []
     tri  = Array.new
     sq   = Array.new
@@ -87,35 +87,79 @@ a = [1281, 8128, 2882, 8256, 5625, 2512]
         results << Result.new(result,5)
 #oct << result
     end
+    $debug = false
 
+    debugger 
     0.upto(results.size - 1).each do |ind|
-        pp results[ind]
+        print "\nSTART: #{results[ind].value}: "
+        if results[ind].value == 1281
+            $debug = true
+        end
+
         build_chain(ind, results)
-        break
     end
     
 end
 
 def build_chain(ind, results)
-        current = results[ind]
-        chain = Chain.new(current, current.id)
+    start = 0
+    current = results[ind]
+    last_ind = ind
+    chain = Chain.new(current, current.id)
 
-        debugger
-        begin
-            search_id = chain.next_attempt
-            puts search_id
-            break if search_id.nil?
-            possibilities = results.select do |result|
-                result if result != current && current.last == result.first && search_id == result.id
+
+    while !chain.done?
+#puts "IND=>#{ind} Start=>#{start}"
+        result = find_next(ind, start, results)
+
+        unless result.nil?
+            if chain.chain.include?(results[result].id)
+                #already there so we need to increment ind 
+                ind += 1
+                break if ind >= results.size
+            else
+                print " #{results[result].value}, "
+                chain.add_value(results[result]) 
+                last_ind = ind
+#pp chain.chain
+                ind = result
+                start = 0
             end
+        else
+            break if ind == results.size - 1
+            #we found a solution but it stops the chain
+#puts "removing last chain.chain[-1] => #{chain.chain[-1]}"
+            chain.rm_value 
+            break if chain.chain.empty?
+            start = last_ind + 1
+            ind = last_ind
+            current = chain.chain[-1]
+        end
+    end
 
-            pp possibilities if possibilities.size > 0
+    pp chain.path if chain.done?
+    return chain.done?
+end
 
-            chain.add_attempt(search_id)
+def find_next(curr_ind, start, results)
+#puts curr_ind
+    current = results[curr_ind]
+    result = nil
+    start.upto(results.size-1) do |ind|
+        next if ind == curr_ind
+        prospect = results[ind]
+        # if it doesn't match letters, next
+        next unless prospect.first == current.last
+        # if the id is the same or already is in the chain, go next
+        next if prospect.id == current.id
 
-            
-        end while true
+        debugger if $debug
+        result = ind
+        break
+    end
 
+#puts result
+    return result
 end
 
 if __FILE__ == $0

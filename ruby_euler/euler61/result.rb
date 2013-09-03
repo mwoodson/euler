@@ -39,12 +39,14 @@ class Chain
         return ([0,1,2,3,4,5] - @chain).first
     end
 
-    def add_value_to_chain(in_val)
-        @chain << in_val
+    def rm_value
+        @path.pop
+        @chain.pop
     end
 
     def add_value(in_val)
         @path << in_val
+        @chain << in_val.id
     end
 
     def done?
