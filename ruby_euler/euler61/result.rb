@@ -54,8 +54,6 @@ class Chain
     end
 
     def sum
-        val = 0
-        path.each{ |z| val += z.value }
-        return val
+        return path.inject(0) { |sum,z| sum + z.value }
     end
 end
