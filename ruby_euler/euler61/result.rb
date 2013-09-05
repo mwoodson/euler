@@ -12,11 +12,10 @@ class Result
         @last  = z[-2..-1]
         @id = id
     end
-
 end
 
 class Chain
-    attr_accessor :path, :chain, :attempt
+    attr_accessor :path, :chain
 
     def initialize(result=nil, id=nil)
 
@@ -27,12 +26,6 @@ class Chain
            @chain = []
            @path  = [] 
         end
-
-        @attempt = []
-    end
-
-    def check_chain()
-        return ([0,1,2,3,4,5] - @chain).length == 0
     end
 
     def next
@@ -50,19 +43,19 @@ class Chain
     end
 
     def done?
-        return ([0,1,2,3,4,5] - @attempt).length == 0
+        0.upto(@path.size-1).each do |ind|
+            if ind == @path.size - 1
+                return false unless @path[ind].last == @path[0].first
+            else
+                return false unless @path[ind].last == @path[ind+1].first
+            end
+        end
+        return ([0,1,2,3,4,5] - @chain).length == 0
     end
 
-    def add_attempt(in_val)
-        @attempt << in_val
-    end
-
-    def rm_attempt(in_val)
-        @attempt.delete(in_val)
-    end
-
-    def next_attempt
-        z = @chain - @attempt
-        return ([0,1,2,3,4,5] - z).first
+    def sum
+        val = 0
+        path.each{ |z| val += z.value }
+        return val
     end
 end
