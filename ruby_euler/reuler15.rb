@@ -33,11 +33,11 @@ MAX_MOVES = 10 #2x2 grid, moves = 4 but zero based is 3
 MAX_ROWS = 5 #2x2 grid, moves = 4 but zero based is 3
 rows = []
 (0...MAX_ROWS+1).each do |x|
-    if x == 0
-        rows <<  [1] * (MAX_ROWS+1)
-    else
-        rows <<  [0] * (MAX_ROWS+1)
-    end
+  if x == 0
+    rows <<  [1] * (MAX_ROWS+1)
+  else
+    rows <<  [0] * (MAX_ROWS+1)
+  end
 end
 
 =begin
